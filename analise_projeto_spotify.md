@@ -317,6 +317,16 @@ plt.tight_layout()
 # Mostra o gráfico no visual do Power BI
 plt.show()
 ```
+![histograma](https://github.com/Mariaamorim25/Projeto-02/blob/main/histograma.png)
+
+5.2.5 Aplicar medidas de dispersão
+
+![desvio_padrao](https://github.com/Mariaamorim25/Projeto-02/blob/main/desvio_padrao.png)
+
+5.2.6 Visualizar o comportamento dos dados ao longo do tempo
+
+![longo_dos_anos](https://github.com/Mariaamorim25/Projeto-02/blob/main/longo_dos_anos.png)
+
 
 
 
