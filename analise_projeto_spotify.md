@@ -360,7 +360,11 @@ FROM `projeto-02-hipoteses-456611.Spotify.analise_final_quartis`;
 ```
 -- Correlação 0.6329 - 	Moderada a forte
 
+## 5.3 Aplicar técnica de análise
 
+5.3.1 Aplicar segmentação
+
+![segmentacao]()
 
 
 
