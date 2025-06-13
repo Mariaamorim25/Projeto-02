@@ -166,10 +166,8 @@ CREATE OR REPLACE VIEW `projeto-02-hipoteses-456611.Spotify.track_in_competition
 SELECT
   *,
   
-  -- Soma total de aparições em charts
   (IFNULL(in_apple_charts, 0) + IFNULL(in_deezer_charts, 0) + IFNULL(in_shazam_charts, 0)) AS total_charts,
 
-  -- Classificação por faixa de popularidade
   CASE
     WHEN (IFNULL(in_apple_charts, 0) + IFNULL(in_deezer_charts, 0) + IFNULL(in_shazam_charts, 0)) = 0 THEN 'nao_ranqueado'
     WHEN (IFNULL(in_apple_charts, 0) + IFNULL(in_deezer_charts, 0) + IFNULL(in_shazam_charts, 0)) <= 5 THEN 'baixa'
@@ -183,7 +181,6 @@ FROM `projeto-02-hipoteses-456611.Spotify.trackincompetition_escopo_filtrado`;
 
 CREATE OR REPLACE VIEW `projeto-02-hipoteses-456611.Spotify.analise_final_musicas` AS
 SELECT 
-  -- 🎵 Informações do Spotify
   s.track_id,
   s.track_name,
   s.artists_name,
@@ -194,12 +191,10 @@ SELECT
   s.in_spotify_playlists,
   s.in_spotify_charts,
 
-  -- 📊 Dados de competição
   c.total_playlists,
   c.total_charts,
   c.faixa_de_popularidade,
 
-  -- 🎧 Informações técnicas
   t.perfil_energia,
   t.eh_instrumental,
   t.faixa_bpm
@@ -260,6 +255,10 @@ SELECT
 FROM `projeto-02-hipoteses-456611.Spotify.analise_final_musicas`
 GROUP BY faixa_de_sucesso
 ORDER BY total_musicas DESC;
+
+5.2.2 Ver variáveis categóricas
+
+![Captura de tela 2025-06-12 212453](https://github.com/Mariaamorim25/Projeto-02/blob/main/Captura%20de%20tela%202025-06-12%20212453.png)
 
 
 
