@@ -258,7 +258,7 @@ ORDER BY total_musicas DESC;
 
 5.2.2 Ver variáveis categóricas
 
-![grafico01](https://github.com/Mariaamorim25/Projeto-02/blob/main/grafico01.png)
+![grafico01](https://raw.githubusercontent.com/Mariaamorim25/Projeto-02/main/grafico01.png)
 
 
 
