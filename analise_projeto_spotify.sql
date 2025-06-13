@@ -258,7 +258,7 @@ ORDER BY total_musicas DESC;
 
 5.2.2 Ver variáveis categóricas
 
-![Captura de tela 2025-06-12 212453](https://github.com/Mariaamorim25/Projeto-02/blob/main/Captura%20de%20tela%202025-06-12%20212453.png)
+![grafico01](https://github.com/Mariaamorim25/Projeto-02/blob/main/grafico01.png)
 
 
 
