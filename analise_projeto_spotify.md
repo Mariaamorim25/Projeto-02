@@ -327,6 +327,29 @@ plt.show()
 
 ![longo_dos_anos](https://github.com/Mariaamorim25/Projeto-02/blob/main/longo_dos_anos.png)
 
+5.2.7 Calcular quartis, decis ou percentis
+
+```
+SELECT
+  PERCENTILE_CONT(streams, 0.25) OVER() AS Q1,
+  PERCENTILE_CONT(streams, 0.50) OVER() AS Q2,
+  PERCENTILE_CONT(streams, 0.75) OVER() AS Q3
+FROM `projeto-02-hipoteses-456611.Spotify.analise_final_com_musicas_solo`
+LIMIT 1;
+```
+```
+CREATE OR REPLACE VIEW `projeto-02-hipoteses-456611.Spotify.analise_final_quartis` AS
+SELECT
+  *,
+  CASE
+    WHEN streams <= 20000000 THEN 'Q1 - Baixo sucesso'
+    WHEN streams <= 51000000 THEN 'Q2 - Sucesso médio-baixo'
+    WHEN streams <= 120000000 THEN 'Q3 - Sucesso médio-alto'
+    ELSE 'Q4 - Alto sucesso'
+  END AS faixa_quartil_streams
+FROM `projeto-02-hipoteses-456611.Spotify.analise_final_com_musicas_solo`;
+```
+![quartis](https://github.com/Mariaamorim25/Projeto-02/blob/main/quartis.png)
 
 
 
