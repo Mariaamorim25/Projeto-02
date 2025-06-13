@@ -364,7 +364,15 @@ FROM `projeto-02-hipoteses-456611.Spotify.analise_final_quartis`;
 
 5.3.1 Aplicar segmentação
 
-![segmentacao]()
+![segmentacao](https://github.com/Mariaamorim25/Projeto-02/blob/main/segmentacao.png)
+
+5.3.2 Validar hipótese
+
+# 1. Músicas com BPM mais altos fazem mais sucesso em streams no Spotify
+
+
+
+
 
 
 
