@@ -288,6 +288,37 @@ ORDER BY total_musicas DESC;
 
 ![grafico01](https://raw.githubusercontent.com/Mariaamorim25/Projeto-02/main/grafico01.png)
 
+5.2.3 Aplicar medidas de tendência central
+
+![tendencia_central](https://github.com/Mariaamorim25/Projeto-02/blob/main/tendencia_central.png)
+
+5.2.4 Ver distribuição
+
+-- Codigo Python no Power BI para criar o histograma
+
+```
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Pega os dados da tabela importada pelo Power BI
+data = dataset[['streams']].dropna()
+
+# Cria o histograma com 10 faixas (bins)
+plt.figure(figsize=(10, 6))
+plt.hist(data['streams'], bins=10, color='skyblue', edgecolor='black', alpha=0.7)
+
+# Configurações do gráfico
+plt.xlabel('Streams (Quantidade de execuções)')
+plt.ylabel('Número de músicas')
+plt.title('Distribuição de Streams das Músicas')
+plt.grid(axis='y', linestyle='--', alpha=0.5)
+plt.tight_layout()
+
+# Mostra o gráfico no visual do Power BI
+plt.show()
+```
+
+
 
 
 
