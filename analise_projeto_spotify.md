@@ -351,6 +351,16 @@ FROM `projeto-02-hipoteses-456611.Spotify.analise_final_com_musicas_solo`;
 ```
 ![quartis](https://github.com/Mariaamorim25/Projeto-02/blob/main/quartis.png)
 
+5.2.8 Calcular correlação entre variáveis
+
+```
+SELECT
+  CORR(streams, total_playlists) AS correlacao_streams_playlists
+FROM `projeto-02-hipoteses-456611.Spotify.analise_final_quartis`;
+```
+-- Correlação 0.6329 - 	Moderada a forte
+
+
 
 
 
