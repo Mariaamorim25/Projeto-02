@@ -368,28 +368,30 @@ FROM `projeto-02-hipoteses-456611.Spotify.analise_final_quartis`;
 
 5.3.2 Validar hipótese
 
-### 1. Músicas com BPM mais altos fazem mais sucesso em streams no Spotify
+#### 1. Músicas com BPM mais altos fazem mais sucesso em streams no Spotify
 
 ![hipotese01](https://github.com/Mariaamorim25/Projeto-02/blob/main/IMAGENS/hipotese01.png)
 
-### 2. As músicas mais populares no ranking do Spotify também possuem um comportamento semelhante em outras plataformas como Deezer.
+#### 2. As músicas mais populares no ranking do Spotify também possuem um comportamento semelhante em outras plataformas como Deezer.
 
 ![hipotese02](https://github.com/Mariaamorim25/Projeto-02/blob/main/IMAGENS/hipotese02.png)
 
-### 3. A presença de uma música em um maior número de playlists está relacionada a um maior número de streams.
+#### 3. A presença de uma música em um maior número de playlists está relacionada a um maior número de streams.
 
 ![hipotese03](https://github.com/Mariaamorim25/Projeto-02/blob/main/IMAGENS/hipotese03.png)
 
-### 4. Artistas com maior número de músicas no Spotify têm mais streams.
+#### 4. Artistas com maior número de músicas no Spotify têm mais streams.
 
 ![hipotese04](https://github.com/Mariaamorim25/Projeto-02/blob/main/IMAGENS/hipotese04.png)
 
-### 5. As características da música influenciam no sucesso em termos de streams no Spotify.
+#### 5. As características da música influenciam no sucesso em termos de streams no Spotify.
 
 ![hipotese05](https://github.com/Mariaamorim25/Projeto-02/blob/main/IMAGENS/hipotese05.png)
 
 
+## 5.4 Resumir informações em um dashboard ou relatório
 
+![relatorio_geral](https://github.com/Mariaamorim25/Projeto-02/blob/main/IMAGENS/relatorio_geral.png)
 
 
 
