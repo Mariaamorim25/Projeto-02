@@ -11,7 +11,7 @@ Nesta etapa foi realizada a importação dos arquivos para o BigQuery - track_in
 ===============================================================
 
 --Identificação dos valores nulos
-```
+```sql
 #track_technical_info
 SELECT
 COUNT(*) AS total_linhas,
@@ -31,7 +31,7 @@ FROM `projeto-02-hipoteses-456611.Spotify.track_technical_info`;
 ```
 
 -- Atualização valores nulos na coluna KEY como "Desconhecido" e criar uma nova view
-```
+```sql
 CREATE OR REPLACE VIEW `projeto-02-hipoteses-456611.Spotify.track_technical_info_limpa` AS
 SELECT
   track_id,
@@ -49,7 +49,7 @@ FROM `projeto-02-hipoteses-456611.Spotify.track_technical_info`;
 ```
 
 -- Atualização os valores nulos na coluna IN_SHAZAM_CHARTS como 0 e criar uma nova view
-```
+```sql
 CREATE OR REPLACE VIEW `projeto-02-hipoteses-456611.Spotify.trackincompetition_limpa` AS
 SELECT
   track_id,
@@ -67,7 +67,7 @@ FROM
 ===============================================================
 
 -- Identificação dos valores duplicados realizando uma concatenação do nome do artista e nome da música
-```
+```sql
 SELECT 
   CONCAT(track_name, ' - ', artists_name) AS musica_artista,
   COUNT(*) AS total_ocorrencias
@@ -77,9 +77,10 @@ GROUP BY
   musica_artista
 HAVING 
   COUNT(*) > 1;
+```
 
 -- Remoção da segunda duplicada por ordem de ID  
-```
+```sql
   CREATE OR REPLACE VIEW `projeto-02-hipoteses-456611.Spotify.track_in_spotify_sem_duplicatas` AS
 WITH numeradas AS (
   SELECT 
@@ -100,7 +101,7 @@ WHERE linha = 1;
 ===============================================================
 
 -- Colunas KEY e MODE removidas da base 
-```
+```sql
 CREATE OR REPLACE VIEW `projeto-02-hipoteses-456611.Spotify.track_technical_info_limpa` AS
 SELECT 
   * EXCEPT(key, mode)
@@ -113,7 +114,7 @@ FROM
 ===============================================================
 
 -- Dados com caracteres discrepantes removidos
-```
+```sql
 CREATE OR REPLACE VIEW `projeto-02-hipoteses-456611.Spotify.track_in_spotify_sem_duplicatas` AS
 SELECT
   track_id,
@@ -135,7 +136,7 @@ FROM
 ===============================================================
 
 -- Identificação dos dados discrepantes
-```
+```sql
 SELECT
   MIN(streams) AS min_streams,
   MAX(streams) AS max_streams,
@@ -145,7 +146,7 @@ FROM `projeto-02-hipoteses-456611.Spotify.track_in_spotify_sem_duplicatas`;
 ```
 
 -- Remoção da linha com dado discrepante 
-```
+```sql
 SELECT
   track_id,
   track_name,
@@ -160,7 +161,7 @@ ORDER BY streams DESC;
 5.1.7 Verificar e alterar o tipo de dados
 ===============================================================
 
-```
+```sql
 CREATE OR REPLACE VIEW `projeto-02-hipoteses-456611.Spotify.track_in_spotify_limpa_final` AS
 SELECT
   track_id,
@@ -185,7 +186,7 @@ WHERE
 ===============================================================
 
 -- Criação das novas variaveis data_lancamento e total_charts
-```
+```sql
 CREATE OR REPLACE VIEW `projeto-02-hipoteses-456611.Spotify.track_in_spotify_com_novas_variaveis` AS
 SELECT
   *,
@@ -201,7 +202,7 @@ SELECT
 FROM `projeto-02-hipoteses-456611.Spotify.track_in_spotify_limpa_final`;
 ```
 
-```
+```sql
 CREATE OR REPLACE VIEW `projeto-02-hipoteses-456611.Spotify.track_in_competition_com_variaveis` AS
 SELECT
   *,
@@ -223,7 +224,7 @@ FROM `projeto-02-hipoteses-456611.Spotify.trackincompetition_escopo_filtrado`;
 
 -- União das tabelas tratadas 
 
-```
+```sql
 CREATE OR REPLACE VIEW `projeto-02-hipoteses-456611.Spotify.analise_final_musicas` AS
 SELECT 
   s.track_id,
@@ -255,7 +256,7 @@ LEFT JOIN `projeto-02-hipoteses-456611.Spotify.track_technical_info_com_variavei
 5.1.10 Construir tabelas auxiliares
 ===============================================================
 
-```
+```sql
 CREATE OR REPLACE VIEW `projeto-02-hipoteses-456611.Spotify.analise_final_com_musicas_solo` AS
 
 WITH artistas_solo AS (
@@ -281,7 +282,7 @@ LEFT JOIN artistas_solo s
 5.2.1 Agrupar dados de acordo com variáveis categóricas
 ===============================================================
 
-```
+```sql
 SELECT
   artists_name,
   COUNT(*) AS total_musicas,
@@ -330,7 +331,7 @@ ORDER BY total_musicas DESC;
 
 -- Codigo Python no Power BI para criar o histograma
 
-```
+```python
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -375,7 +376,7 @@ plt.show()
 5.2.7 Calcular quartis, decis ou percentis
 ===============================================================
 
-```
+```sql
 SELECT
   PERCENTILE_CONT(streams, 0.25) OVER() AS Q1,
   PERCENTILE_CONT(streams, 0.50) OVER() AS Q2,
@@ -383,7 +384,7 @@ SELECT
 FROM `projeto-02-hipoteses-456611.Spotify.analise_final_com_musicas_solo`
 LIMIT 1;
 ```
-```
+```sql
 CREATE OR REPLACE VIEW `projeto-02-hipoteses-456611.Spotify.analise_final_quartis` AS
 SELECT
   *,
@@ -403,7 +404,7 @@ FROM `projeto-02-hipoteses-456611.Spotify.analise_final_com_musicas_solo`;
 5.2.8 Calcular correlação entre variáveis
 ===============================================================
 
-```
+```sql
 SELECT
   CORR(streams, total_playlists) AS correlacao_streams_playlists
 FROM `projeto-02-hipoteses-456611.Spotify.analise_final_quartis`;
