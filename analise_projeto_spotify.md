@@ -286,11 +286,11 @@ ORDER BY total_musicas DESC;
 
 5.2.2 Ver variáveis categóricas
 
-![grafico01](https://raw.githubusercontent.com/Mariaamorim25/Projeto-02/main/grafico01.png)
+![grafico01](https://github.com/Mariaamorim25/Projeto-02/blob/main/IMAGENS/grafico01.png)
 
 5.2.3 Aplicar medidas de tendência central
 
-![tendencia_central](https://github.com/Mariaamorim25/Projeto-02/blob/main/tendencia_central.png)
+![tendencia_central](https://github.com/Mariaamorim25/Projeto-02/blob/main/IMAGENS/tendencia_central.png)
 
 5.2.4 Ver distribuição
 
@@ -317,15 +317,15 @@ plt.tight_layout()
 # Mostra o gráfico no visual do Power BI
 plt.show()
 ```
-![histograma](https://github.com/Mariaamorim25/Projeto-02/blob/main/histograma.png)
+![histograma](https://github.com/Mariaamorim25/Projeto-02/blob/main/IMAGENS/histograma.png)
 
 5.2.5 Aplicar medidas de dispersão
 
-![desvio_padrao](https://github.com/Mariaamorim25/Projeto-02/blob/main/desvio_padrao.png)
+![desvio_padrao](https://github.com/Mariaamorim25/Projeto-02/blob/main/IMAGENS/desvio_padrao.png)
 
 5.2.6 Visualizar o comportamento dos dados ao longo do tempo
 
-![longo_dos_anos](https://github.com/Mariaamorim25/Projeto-02/blob/main/longo_dos_anos.png)
+![longo_dos_anos](https://github.com/Mariaamorim25/Projeto-02/blob/main/IMAGENS/longo_dos_anos.png)
 
 5.2.7 Calcular quartis, decis ou percentis
 
@@ -349,7 +349,7 @@ SELECT
   END AS faixa_quartil_streams
 FROM `projeto-02-hipoteses-456611.Spotify.analise_final_com_musicas_solo`;
 ```
-![quartis](https://github.com/Mariaamorim25/Projeto-02/blob/main/quartis.png)
+![quartis](https://github.com/Mariaamorim25/Projeto-02/blob/main/IMAGENS/quartis.png)
 
 5.2.8 Calcular correlação entre variáveis
 
@@ -364,11 +364,13 @@ FROM `projeto-02-hipoteses-456611.Spotify.analise_final_quartis`;
 
 5.3.1 Aplicar segmentação
 
-![segmentacao](https://github.com/Mariaamorim25/Projeto-02/blob/main/segmentacao.png)
+![segmentacao](https://github.com/Mariaamorim25/Projeto-02/blob/main/IMAGENS/segmentacao.png)
 
 5.3.2 Validar hipótese
 
 # 1. Músicas com BPM mais altos fazem mais sucesso em streams no Spotify
+
+
 
 
 
