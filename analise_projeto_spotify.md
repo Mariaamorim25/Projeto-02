@@ -1,11 +1,16 @@
 ## 5.1 Processar e preparar a base de dados
 
+===============================================================
 5.1.1 Conectar/importar dados para outras ferramentas
+===============================================================
 
 Nesta etapa foi realizada a importação dos arquivos para o BigQuery - track_in_competition - competition, track_in_spotify - spotify e track_technical_info - technical_info.
 
+===============================================================
 5.1.2 Identificar e tratar valores nulos
+===============================================================
 
+--Identificação dos valores nulos
 ```
 #track_technical_info
 SELECT
@@ -25,8 +30,7 @@ COUNTIF(speechiness_ IS NULL) AS speechiness_nulos,
 FROM `projeto-02-hipoteses-456611.Spotify.track_technical_info`;
 ```
 
--- Atualizar valores nulos na coluna KEY como "Desconhecido" e criar uma nova view
-
+-- Atualização valores nulos na coluna KEY como "Desconhecido" e criar uma nova view
 ```
 CREATE OR REPLACE VIEW `projeto-02-hipoteses-456611.Spotify.track_technical_info_limpa` AS
 SELECT
@@ -44,8 +48,7 @@ SELECT
 FROM `projeto-02-hipoteses-456611.Spotify.track_technical_info`;
 ```
 
--- Atualizar os valores nulos na coluna IN_SHAZAM_CHARTS como 0 e criar uma nova view
-
+-- Atualização os valores nulos na coluna IN_SHAZAM_CHARTS como 0 e criar uma nova view
 ```
 CREATE OR REPLACE VIEW `projeto-02-hipoteses-456611.Spotify.trackincompetition_limpa` AS
 SELECT
@@ -59,10 +62,11 @@ FROM
   `projeto-02-hipoteses-456611.Spotify.trackincompetition`;
 ```
 
+===============================================================
 5.1.3 Identificar e tratar valores duplicados
+===============================================================
 
--- Identificar os valores duplicados realizando uma concatenação do nome do artista e nome da música
-
+-- Identificação dos valores duplicados realizando uma concatenação do nome do artista e nome da música
 ```
 SELECT 
   CONCAT(track_name, ' - ', artists_name) AS musica_artista,
@@ -74,8 +78,8 @@ GROUP BY
 HAVING 
   COUNT(*) > 1;
 
--- Remove a segunda duplicada por ordem de ID  
-
+-- Remoção da segunda duplicada por ordem de ID  
+```
   CREATE OR REPLACE VIEW `projeto-02-hipoteses-456611.Spotify.track_in_spotify_sem_duplicatas` AS
 WITH numeradas AS (
   SELECT 
@@ -91,8 +95,11 @@ FROM numeradas
 WHERE linha = 1;
 ```
 
+===============================================================
 5.1.4 Identificar e tratar dados fora do escopo de análise
+===============================================================
 
+-- Colunas KEY e MODE removidas da base 
 ```
 CREATE OR REPLACE VIEW `projeto-02-hipoteses-456611.Spotify.track_technical_info_limpa` AS
 SELECT 
@@ -101,8 +108,11 @@ FROM
   `projeto-02-hipoteses-456611.Spotify.track_technical_info`;
 ```
 
+===============================================================
 5.1.5 Identificar e tratar dados discrepantes em variáveis categóricas
+===============================================================
 
+-- Dados com caracteres discrepantes removidos
 ```
 CREATE OR REPLACE VIEW `projeto-02-hipoteses-456611.Spotify.track_in_spotify_sem_duplicatas` AS
 SELECT
@@ -120,8 +130,11 @@ FROM
   `projeto-02-hipoteses-456611.Spotify.track_in_spotify`;
 ```
 
+===============================================================
 5.1.6 Identificar e tratar dados discrepantes em variáveis numéricas
+===============================================================
 
+-- Identificação dos dados discrepantes
 ```
 SELECT
   MIN(streams) AS min_streams,
@@ -131,6 +144,7 @@ SELECT
 FROM `projeto-02-hipoteses-456611.Spotify.track_in_spotify_sem_duplicatas`;
 ```
 
+-- Remoção da linha com dado discrepante 
 ```
 SELECT
   track_id,
@@ -142,7 +156,9 @@ WHERE streams > 1751714589
 ORDER BY streams DESC;
 ```
 
+===============================================================
 5.1.7 Verificar e alterar o tipo de dados
+===============================================================
 
 ```
 CREATE OR REPLACE VIEW `projeto-02-hipoteses-456611.Spotify.track_in_spotify_limpa_final` AS
@@ -164,13 +180,16 @@ WHERE
   AND track_id NOT IN ('4061483', '0:00'); 
 ```
 
-5.1.8 Criar novas variáveis
+===============================================================
+5.1.8 Criar novas variáveis 
+===============================================================
 
+-- Criação das novas variaveis data_lancamento e total_charts
 ```
 CREATE OR REPLACE VIEW `projeto-02-hipoteses-456611.Spotify.track_in_spotify_com_novas_variaveis` AS
 SELECT
   *,
-  DATE(released_year, released_month, released_day) AS data_lancamento,
+  DATE(released_year, released_month, released_day) AS data_lancamento
 
   CASE 
     WHEN streams < 51143742 THEN 'baixo_sucesso'
@@ -198,8 +217,11 @@ SELECT
 
 FROM `projeto-02-hipoteses-456611.Spotify.trackincompetition_escopo_filtrado`;
 ```
-
+===============================================================
 5.1.9 Unir tabelas
+===============================================================
+
+-- União das tabelas tratadas 
 
 ```
 CREATE OR REPLACE VIEW `projeto-02-hipoteses-456611.Spotify.analise_final_musicas` AS
@@ -229,12 +251,13 @@ LEFT JOIN `projeto-02-hipoteses-456611.Spotify.track_technical_info_com_variavei
   ON s.track_id = t.track_id;
 ```
 
+===============================================================
 5.1.10 Construir tabelas auxiliares
+===============================================================
 
 ```
 CREATE OR REPLACE VIEW `projeto-02-hipoteses-456611.Spotify.analise_final_com_musicas_solo` AS
 
--- TABELA AUXILIAR: total de músicas solo por artista
 WITH artistas_solo AS (
   SELECT
     artists_name,
@@ -244,7 +267,6 @@ WITH artistas_solo AS (
   GROUP BY artists_name
 )
 
--- TABELA FINAL: juntando com a tabela geral
 SELECT
   a.*,
   IFNULL(s.total_musicas_solo, 0) AS total_musicas_solo
@@ -253,10 +275,11 @@ LEFT JOIN artistas_solo s
   ON a.artists_name = s.artists_name;
 ```
 
-
 ## 5.2 Fazer uma análise exploratória
 
+===============================================================
 5.2.1 Agrupar dados de acordo com variáveis categóricas
+===============================================================
 
 ```
 SELECT
