@@ -1,8 +1,8 @@
 ## 5.1 Processar e preparar a base de dados
 
-===============================================================
+_ _ _ _ _ _
 5.1.1 Conectar/importar dados para outras ferramentas
-===============================================================
+_ _ _ _ _ _
 
 Nesta etapa foi realizada a importação dos arquivos para o BigQuery - track_in_competition - competition, track_in_spotify - spotify e track_technical_info - technical_info.
 
